@@ -20,8 +20,9 @@
                     <li><a href="/" class="left brand-logo">&nbsp;&nbsp;MagnetCollector</a></li>
                 </ul>
                 <ul class="right">
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/magnets">View All My Magnets</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'magnets_create' %}">Add a magnet</a></li>
+                    <li><a href="{% url 'index' %}">View All My Magnets</a></li>
                 </ul>
             </div>
         </nav>

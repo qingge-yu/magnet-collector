@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Magnet Details</h1>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ magnet.name }}</span>
+        <p>Location: {{ magnet.location }}</p>
+        <p>Description: {{ magnet.description|linebreaks }}</p>
+        <p>Date: {{ magnet.date }}</p>
+    </div>
+    <div class="card-action">
+        <a href="{% url 'magnets_update' magnet.id %}">Edit</a>
+        <a href="{% url 'magnets_delete' magnet.id %}">Delete</a>
+    </div>
+</div>
+
+
+
+{% endblock %}

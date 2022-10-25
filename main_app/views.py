@@ -1,27 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Magnet
 
 # Create your views here.
 
 
-class Magnet:
-    def __init__(self, name, location, description, date):
-        self.name = name
-        self.location = location
-        self.description = description
-        self.date = date
-
-
-magnets = [
-    Magnet('Salzburg', 'Germany', 'Shaped like a beer mug', 2015),
-    Magnet('Yosemite National Park', 'California',
-           'A picture of Half Dome', 2018),
-    Magnet('Honolulu', 'Hawaii', 'Aloha gesture with spring so it moves', 2021)
-]
-
-
 def home(request):
-    return HttpResponse("<h1>Let's collect some magnets!</h1>")
+    return render(request, 'home.html')
 
 
 def about(request):
@@ -29,4 +14,26 @@ def about(request):
 
 
 def magnets_index(request):
+    magnets = Magnet.objects.order_by('date')
     return render(request, 'magnets/index.html', {'magnets': magnets})
+
+
+def magnets_detail(request, magnet_id):
+    magnet = Magnet.objects.get(id=magnet_id)
+    return render(request, 'magnets/detail.html', {'magnet': magnet})
+
+
+class MagnetCreate(CreateView):
+    model = Magnet
+    fields = '__all__'
+    success_url = '/magnets/'
+
+
+class MagnetUpdate(UpdateView):
+    model = Magnet
+    fields = ['location', 'description', 'date']
+
+
+class MagnetDelete(DeleteView):
+    model = Magnet
+    success_url = '/magnets/'
