@@ -11,4 +11,13 @@ urlpatterns = [
          views.MagnetUpdate.as_view(), name='magnets_update'),
     path('magnets/<int:pk>/delete/',
          views.MagnetDelete.as_view(), name='magnets_delete'),
+    path('magnets/<int:magnet_id>/add_review/',
+         views.add_review, name='add_review'),
+    path('looks/', views.LookList.as_view(), name='looks_index'),
+    path('looks/<int:pk>/', views.LookDetail.as_view(), name='looks_detail'),
+    path('looks/create/', views.LookCreate.as_view(), name='looks_create'),
+    path('looks/<int:pk>/update', views.LookUpdate.as_view(), name='looks_update'),
+    path('looks/<int:pk>/delete', views.LookDelete.as_view(), name='looks_delete'),
+    path('magnets/<int:magnet_id>/assoc_look/<int:look_id>/',
+         views.assoc_look, name='assoc_look')
 ]

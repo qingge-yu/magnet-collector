@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Look List</h1>
+
+{% for look in look_list %}
+<a href="{% url 'looks_detail' look.id %}">
+    <div class="card">
+        <div class="card-content">
+            <p>Shape: {{ look.shape }}</p>
+            <p>Color: {{ look.color }}</p>
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+{% endblock %}
